@@ -1,10 +1,16 @@
 import css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
+import { Image } from "../../Types/Types";
 
-function ImageGallery({ images, openModal }) {
+type ImageGalleryProps = {
+  images: Image[];
+  openModal: (images: Image) => void;
+};
+
+function ImageGallery({ images, openModal }: ImageGalleryProps) {
   return (
     <ul className={css.modalGalleryList}>
-      {images.map(({ id, description, urls: { small, regular } }) => {
+      {images.map(({ id, description, urls: { small, regular } }: Image) => {
         return (
           <li key={id} className={css.modalGalleryItem}>
             <ImageCard

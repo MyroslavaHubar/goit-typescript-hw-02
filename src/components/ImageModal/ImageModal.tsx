@@ -1,9 +1,16 @@
+import { Image } from "../../Types/Types";
 import css from "./ImageModal.module.css";
 import Modal from "react-modal";
 
+type ImageModalProps = {
+  image: Image | null;
+  closeModal: () => void;
+  modalIsOpen: boolean;
+};
+
 Modal.setAppElement("#root");
 
-function ImageModal({ image, closeModal, modalIsOpen }) {
+function ImageModal({ image, closeModal, modalIsOpen }: ImageModalProps) {
   if (!image || !image.urls) return null;
   console.log(image);
 
@@ -37,7 +44,7 @@ function ImageModal({ image, closeModal, modalIsOpen }) {
         <img
           className={css.image}
           src={image.urls.regular}
-          alt={image.alt_description}
+          alt={image.description}
         />
       </div>
     </Modal>
