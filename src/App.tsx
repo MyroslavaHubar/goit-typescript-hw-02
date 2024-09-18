@@ -7,16 +7,19 @@ import ImageModal from "./components/ImageModal/ImageModal";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import { Image } from "./Types/Types";
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalImage, setModalImage] = useState(null);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [images, setImages] = useState<Image[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [modalImage, setModalImage] = useState<Pick<Image, "urls"> | null>(
+    null
+  );
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchImages() {
@@ -26,7 +29,11 @@ function App() {
         setHasMore(result.results.length > 0);
         setImages((prevImages) => [...prevImages, ...result.results]);
       } catch (error) {
-        setError(error.message);
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("Unknown error");
+        }
       } finally {
         setLoading(false);
       }
@@ -36,7 +43,7 @@ function App() {
     }
   }, [query, page]);
 
-  const handleSubmit = (value) => {
+  const handleSubmit = (value: string) => {
     setQuery(value);
     setPage(1);
     setImages([]);
@@ -44,7 +51,7 @@ function App() {
     setError(null);
   };
 
-  function openModal(image) {
+  function openModal(image: Image) {
     setIsOpen(true);
     setModalImage(image);
   }
