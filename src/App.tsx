@@ -14,9 +14,7 @@ function App() {
   const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-  const [modalImage, setModalImage] = useState<Pick<Image, "urls"> | null>(
-    null
-  );
+  const [modalImage, setModalImage] = useState<Image | null>(null);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);

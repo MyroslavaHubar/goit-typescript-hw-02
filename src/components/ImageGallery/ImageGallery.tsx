@@ -4,7 +4,7 @@ import { Image } from "../../Types/Types";
 
 type ImageGalleryProps = {
   images: Image[];
-  openModal: (images: Image) => void;
+  openModal: () => void;
 };
 
 function ImageGallery({ images, openModal }: ImageGalleryProps) {

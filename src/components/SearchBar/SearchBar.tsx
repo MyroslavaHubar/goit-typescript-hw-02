@@ -3,7 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
 type SearchBaProps = {
-  onSubmit: (value: string | number) => void;
+  onSubmit: (value: string) => void;
 };
 
 function SearchBar({ onSubmit }: SearchBaProps) {
