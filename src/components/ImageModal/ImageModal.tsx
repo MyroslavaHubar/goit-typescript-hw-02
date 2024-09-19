@@ -3,7 +3,7 @@ import css from "./ImageModal.module.css";
 import Modal from "react-modal";
 
 type ImageModalProps = {
-  image: Image | null;
+  image: Pick<Image, "urls" | "description"> | null;
   closeModal: () => void;
   modalIsOpen: boolean;
 };
