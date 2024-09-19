@@ -10,12 +10,12 @@ type ImageCardProps = {
 
 function ImageCard({ small, description, regular, openModal }: ImageCardProps) {
   const handleOpenModal = () => {
-    const article: Image = {
+    const image: Image = {
       id: "",
       description: description,
       urls: { small: small, regular },
     };
-    openModal(article);
+    openModal(image);
   };
 
   return (
