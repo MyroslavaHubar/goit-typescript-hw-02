@@ -10,15 +10,10 @@ type ImageGalleryProps = {
 function ImageGallery({ images, openModal }: ImageGalleryProps) {
   return (
     <ul className={css.modalGalleryList}>
-      {images.map(({ id, description, urls: { small, regular } }: Image) => {
+      {images.map((image) => {
         return (
-          <li key={id} className={css.modalGalleryItem}>
-            <ImageCard
-              small={small}
-              regular={regular}
-              description={description}
-              openModal={openModal}
-            />
+          <li key={image.id} className={css.modalGalleryItem}>
+            <ImageCard image={image} openModal={openModal} />
           </li>
         );
       })}
